@@ -1,0 +1,31 @@
+person, 4624525c-0453-456e-8a79-19578c40b480, Ulli Baumann, 11
+character, 57b3ab35-8dc5-4bea-94f1-831ec99ee79c, Nigel, 43
+person, f1797098-f7d1-4394-b50d-d496ecc81442, Jimmy McNichol, 12
+person, 8a1d55cb-c7e6-45bb-8998-d5ef526dc1d3, Mýa, 18
+person, 1858ce72-0d86-4c98-8b2f-37c58519b830, Annabelle Weenick, 12
+person, 9e18625c-d39d-40d0-a764-07a60c998e58, Ivan Lukinsky, 11
+person, 850b6939-f7bd-4c12-991d-8906e645f487, Antonia Bernath, 15
+keyword, 6566d5fe-55f4-4894-9e52-2df5b4a05f3f, pump action shotgun, 12
+keyword, 2ee8d773-f13d-4a51-9db0-d58c22d09dfc, swinger, 17
+person, 0625707b-8597-4960-bde9-67a9f5ae4d19, Joyce Wieland, 29
+keyword, 6d3fe003-c480-476a-ac68-5fbd009d3619, general, 98
+person, 40baee5a-81ea-46af-af81-871795f4c9ba, Subrata Sen, 11
+character, 8ce43933-ee0e-4e9d-97e6-034a433b19dd, George Washington, 11
+person, 4bac7d07-b38e-4f3c-ac74-1db443593abd, Nelson Scott Simpson, 19
+person, b2d1b47b-0d71-4676-be60-f92c4507fe95, Steve Carell, 84
+award, 166a0d28-3873-47c5-a786-bd55de1c834d, Prix Denise-Pelletier, 14
+person, 3702481e-dfda-4fa6-8c39-2c55d511407a, Wladyslaw Hancza, 15
+person, 8eaa2a99-8146-44d7-b89b-ea32c167cbc6, James Ha, 13
+person, ab97b119-ea44-43f5-a093-b878247e7875, Jörg Buttgereit, 30
+person, f31d1711-b2e7-483b-8a07-e41b0b2808dd, David Westhead, 18
+person, 1c857c1d-ee9d-47e1-9417-24e47b89b800, Italo Calvino, 12
+person, 8423b136-a785-492c-ad86-51489877d25a, Lorli Villanueva, 14
+person, 29734510-71b5-4d4d-9cc0-51754af36b3a, Prince Frederick Charles of Hesse, 14
+person, c47a6073-bee7-4267-831a-e8827add2d41, Fredrick Lopez, 12
+person, 888317bb-c48b-4a66-b84c-603f6d86ba0e, Gemma Donati, 11
+person, f6fe503e-e9b8-42ac-92d9-75296af2b4ef, Priscilla Morgan, 13
+genre, b6b0e593-f9a7-487e-bba6-6a5a7f048750, political thriller, 164
+genre, 1fee2695-ad44-4e12-93f7-5b167aae6bd4, Short, 2706
+genre, de6a9653-43a0-455e-b64e-a76b6d5042ec, novel, 80
+genre, bc22d7b1-dffd-4123-b32b-929243412a04, Crime, 9431
+genre, b42ba493-db4a-4770-869f-92fb8dbce47f, parody, 262

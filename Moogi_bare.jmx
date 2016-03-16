@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.8" jmeter="2.13 r1665067">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Moogi users" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">300</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1455299339000</longProp>
+        <longProp name="ThreadGroup.end_time">1455299339000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">300</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+          <stringProp name="delimiter">,</stringProp>
+          <stringProp name="fileEncoding"></stringProp>
+          <stringProp name="filename">movieIds.txt</stringProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="variableNames">movieId</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Data query" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">moogi.co</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">movie/${movieId}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Pragma</stringProp>
+                <stringProp name="Header.value">no-cache</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">If-None-Match</stringProp>
+                <stringProp name="Header.value">2345</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Cache-Control</stringProp>
+                <stringProp name="Header.value">no-cache</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract name" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">movieName</stringProp>
+            <stringProp name="RegexExtractor.regex">data: {name: &quot;(.+?)&quot;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">DUPA</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+            <stringProp name="Sample.scope">all</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract movieId" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">movieId</stringProp>
+            <stringProp name="RegexExtractor.regex">, movieId: &quot;(.+?)&quot;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">NONE</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+            <stringProp name="Sample.scope">all</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract CSRF token" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">CSRFToken</stringProp>
+            <stringProp name="RegexExtractor.regex">csrf&apos; value=&apos;(.+?)&apos;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">DUPA</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">if ( vars.get(&quot;movieName&quot;).equals(&quot;&quot;))
+   vars.put(&quot;emptyMovie&quot;, &quot;true&quot;);
+else
+   vars.put(&quot;emptyMovie&quot;, &quot;false&quot;);</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="3569038">true</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">20</intProp>
+            <stringProp name="Assertion.scope">variable</stringProp>
+            <stringProp name="Scope.variable">emptyMovie</stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
+          <stringProp name="IfController.condition">${emptyMovie} != &quot;true&quot;</stringProp>
+          <boolProp name="IfController.evaluateAll">true</boolProp>
+        </IfController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Movie Query" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="request" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">{&quot;selectedConcepts&quot;:[{&quot;name&quot;:&quot;movies&quot;,&quot;instances&quot;:[{&quot;id&quot;:&quot;${movieId}&quot;,&quot;value&quot; :&quot;${movieName}&quot;}]}],&quot;type&quot;:&quot;explore&quot;,&quot;groupBy&quot;:&quot;&quot;,&quot;query&quot;:&quot;&quot;,&quot;limit&quot;:50,&quot;groupLimit&quot;:0,&quot;offset&quot;:0}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">request</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">moogi.co</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">search/getSearchResults?</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">content-type</stringProp>
+                  <stringProp name="Header.value">application/json; charset=utf-8</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Pragma</stringProp>
+                  <stringProp name="Header.value">no-cache</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">If-None-Match</stringProp>
+                  <stringProp name="Header.value">2345</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Cache-Control</stringProp>
+                  <stringProp name="Header.value">no-cache</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract total" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">totalRegEx</stringProp>
+              <stringProp name="RegexExtractor.regex">{&quot;total&quot;:(.+?),</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">DUPA</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+              <stringProp name="Sample.scope">all</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="script">if ( vars.get(&quot;totalRegEx&quot;).equals(&quot;0&quot;))
+   vars.put(&quot;emptyKnowledgeQuery&quot;, &quot;true&quot;);
+else
+   vars.put(&quot;emptyKnowledgeQuery&quot;, &quot;false&quot;);</stringProp>
+            </BeanShellPostProcessor>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="3569038">true</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">20</intProp>
+              <stringProp name="Assertion.scope">variable</stringProp>
+              <stringProp name="Scope.variable">emptyKnowledgeQuery</stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+          <stringProp name="filename">knowledgeQueries2.txt</stringProp>
+          <stringProp name="fileEncoding"></stringProp>
+          <stringProp name="variableNames">conceptType,conceptId,conceptName,conceptRank</stringProp>
+          <stringProp name="delimiter">, </stringProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Search Query" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="request" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">{&quot;selectedConcepts&quot;:[{&quot;name&quot;:&quot;${conceptType}&quot;,&quot;instances&quot;:[{&quot;rank&quot;:${conceptRank},&quot;id&quot;:&quot;${conceptId}&quot; ,&quot;value&quot;:&quot;${conceptName}&quot;}]}],&quot;type&quot;:&quot;search&quot;,&quot;groupBy&quot;:&quot;&quot;,&quot;query&quot;:&quot;&quot;,&quot;limit&quot;:96,&quot;groupLimit&quot;:96,&quot;offset&quot;:0}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">request</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">moogi.co</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">search/getSearchResults?</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract total" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">totalRegEx</stringProp>
+            <stringProp name="RegexExtractor.regex">{&quot;total&quot;:(.+?),</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">DUPA</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+            <stringProp name="Sample.scope">all</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">if ( vars.get(&quot;totalRegEx&quot;).equals(&quot;0&quot;))
+   vars.put(&quot;emptyKnowledgeQuery&quot;, &quot;true&quot;);
+else
+   vars.put(&quot;emptyKnowledgeQuery&quot;, &quot;false&quot;);</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="3569038">true</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">20</intProp>
+            <stringProp name="Assertion.scope">variable</stringProp>
+            <stringProp name="Scope.variable">emptyKnowledgeQuery</stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>false</message>
+              <threadName>true</threadName>
+              <dataType>false</dataType>
+              <encoding>false</encoding>
+              <assertions>false</assertions>
+              <subresults>false</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <hostname>true</hostname>
+              <threadCounts>true</threadCounts>
+              <sampleCount>true</sampleCount>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>false</message>
+              <threadName>true</threadName>
+              <dataType>false</dataType>
+              <encoding>false</encoding>
+              <assertions>false</assertions>
+              <subresults>false</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <hostname>true</hostname>
+              <threadCounts>true</threadCounts>
+              <sampleCount>true</sampleCount>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
