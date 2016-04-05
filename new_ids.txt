@@ -1,0 +1,27 @@
+France, location, 32d4403d-f965-4c45-b140-44eb819ea15c
+India, location, 4fd83c33-d544-41dc-b3eb-202aaaad2e69
+Germany, location, dbe0cd1a-f4ab-4214-9e76-582c80716595
+United Kingdom, location, 077a75dd-631d-4de4-9fac-2bdfc058c4d9
+Italy, location, 131ea63c-6c50-4faf-a1e8-e5deda2b790b
+Canada, location, b434d454-bb72-415f-8a73-2eb8413b8a65
+Japan, location, c0d49f0b-687f-4c3e-929e-07594f99fe12
+Sweden, location, 4a8b1db7-d22b-419f-b7a9-a867c7e13a6f
+Spain, location, e3fdfb82-b7db-47d9-aa88-8aa641371d85
+iTunes, company, 94b5b9ff-3e92-4351-be82-8dbbd2dbb245
+Google Play, company, 43112d3d-f7d3-430e-b5d0-4d9176212008
+YouTube, company, ace537e6-05db-4446-8f3c-bdf1449df711
+VUDU, company, fd46f7e0-c968-4c05-b782-00afb7433f89
+Sony Entertainment Network, company, a3d8ada3-0850-4d3a-a054-09c2ca50fcbb
+CinemaNow, company, 7071a952-a0d0-458f-b2ec-824f128231d7
+Amazon Prime, company, b3cc517b-d46a-4d75-b803-1814d9c0e3ab
+Fandor, company, f75c3604-a8cf-4c65-b68a-7b621f0cba31
+Flixster, company, c97ade74-5aa2-49d1-a1cf-b7dd05ed1ec2
+Comedy, genre, 8b337751-d550-44ce-bc95-1c1e6a5afa94
+Documentary, genre, a8b25e35-c870-448f-9a59-7a33de4c3795
+Romance, genre, 4e7105af-3280-4e05-a868-ff015af44c66
+Action, genre, c12e358a-1469-4d8f-8b90-77ec83b31403
+Thriller, genre, b9532232-802d-49fe-a68a-1135ed3525d9
+Crime, genre, 3e22006a-41a6-4991-b685-e8bdf91eae09
+Horror, genre, 0a1c0304-8f05-47a9-a2c5-3f28c0920d7e
+Family, genre, 2ba584b3-8a9b-4c8d-ac7c-8266c5798133
+Adventure, genre, cce5748b-e96e-41b6-8fa7-8d524c530184
